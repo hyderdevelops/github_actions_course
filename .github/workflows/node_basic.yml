@@ -1,7 +1,6 @@
 name: Basic Node
 on:
-  workflow-dispatch:
-
+  workflow_dispatch:
 env:
   FILE: test.js
 
@@ -9,12 +8,12 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - name: Checkout the code
-      uses: actions/checkout@v4
-    - name: Setup NodeJS
-      uses: actions/setup-node@v4
-    
-    - name: Check current Directory
-      run: echo ${{GITHIB_WORKSPACE}}
-    - name: Execute JS FILE
-      run: "node ${{GITHIB_WORKSPACE}}/${{env.FILE}}"
+      - name: Checkout the code
+        uses: actions/checkout@v4
+      - name: Setup NodeJS
+        uses: actions/setup-node@v4
+
+      - name: Check current Directory
+        run: echo $GITHUB_WORKSPACE
+      - name: Execute JS FILE
+        run: "node $GITHIB_WORKSPACE/${{env.FILE}}"
