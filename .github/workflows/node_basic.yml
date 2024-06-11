@@ -14,6 +14,6 @@ jobs:
         uses: actions/setup-node@v4
 
       - name: Check current Directory
-        run: echo $GITHUB_WORKSPACE
+        run: echo
       - name: Execute JS FILE
-        run: "node $GITHIB_WORKSPACE/${{env.FILE}}"
+        run: "node ${{env.FILE}}"
