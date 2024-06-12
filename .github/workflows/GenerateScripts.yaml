@@ -42,7 +42,7 @@ jobs:
         run: sudo apt install unzip -y
 
       - name: Extract file
-        run: unzip file.zip
+        run: unzip files.zip
 
       - name: Setup Node Env
         uses: actions/setup-node@v4
