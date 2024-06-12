@@ -21,7 +21,7 @@ jobs:
         run: zip files.zip windows.js ubuntu.js
 
       - name: Upload Files to Artifact
-        uses: actions/upload-artifact
+        uses: actions/upload-artifact@v4
         with:
           name: files
           path: files.zip
@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifact
-        uses: actions/download-artifact
+        uses: actions/download-artifact@v4
         with:
           name: files.zip
 
