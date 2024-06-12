@@ -15,7 +15,7 @@ jobs:
         run: node generate-scripts.js
 
       - name: Install zip
-        run: apt install zip -y
+        run: sudo apt install zip -y
 
       - name: Zip Files
         run: zip files.zip windows.js ubuntu.js
@@ -27,6 +27,7 @@ jobs:
           path: files.zip
 
   execute_win:
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifact
@@ -38,7 +39,7 @@ jobs:
         run: ls
 
       - name: Install zip
-        run: apt install unzip -y
+        run: sudo apt install unzip -y
 
       - name: Extract file
         run: unzip file.zip
