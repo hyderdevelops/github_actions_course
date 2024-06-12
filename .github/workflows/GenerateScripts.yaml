@@ -26,7 +26,7 @@ jobs:
           name: files
           path: files.zip
 
-  execute_win:
+  execute_ubuntu:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
@@ -43,6 +43,27 @@ jobs:
 
       - name: Extract file
         run: unzip files.zip
+
+      - name: Setup Node Env
+        uses: actions/setup-node@v4
+
+      - name: Execute Ubuntu File
+        run: node ubuntu.js
+
+  execute_win:
+    needs: [build]
+    runs-on: windows-latest
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: files
+
+      - name: Extract file
+        run: Expand-Archive -Path files.zip -DestinationPath ./ -Force
+
+      - name: List all Files
+        run: ls
 
       - name: Setup Node Env
         uses: actions/setup-node@v4
