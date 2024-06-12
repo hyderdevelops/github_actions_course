@@ -1,0 +1,50 @@
+name: Generate Scripts
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node Env
+        uses: actions/setup-node@v4
+
+      - name: Execute Script to generate files
+        run: node generate-scripts.js
+
+      - name: Install zip
+        run: apt install zip -y
+
+      - name: Zip Files
+        run: zip files.zip windows.js ubuntu.js
+
+      - name: Upload Files to Artifact
+        uses: actions/upload-artifact
+        with:
+          name: files
+          path: files.zip
+
+  execute_win:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact
+        with:
+          name: files.zip
+
+      - name: List all Files
+        run: ls
+
+      - name: Install zip
+        run: apt install unzip -y
+
+      - name: Extract file
+        run: unzip file.zip
+
+      - name: Setup Node Env
+        uses: actions/setup-node@v4
+
+      - name: Execute Ubuntu File
+        run: node windows.js
