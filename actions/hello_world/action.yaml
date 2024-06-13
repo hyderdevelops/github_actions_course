@@ -1,0 +1,13 @@
+name: 'Hello World'
+description: Greets the name passed to it
+inputs:
+  name-to-greet: 
+    description: Name of person to Greet
+    default: Hyder
+    required: true
+outputs:
+  greet-string:
+    description: Ouput string after greet
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
