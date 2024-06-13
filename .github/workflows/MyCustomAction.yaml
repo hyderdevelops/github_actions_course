@@ -32,7 +32,7 @@ jobs:
 
       - name: Run Custom Action
         id: custom_action
-        uses: hyderdevelops//custom_actions/hello_world
+        uses: hyderdevelops//custom_actions/hello_world@master
         with:
           name-to-greet: Tasleema Jan
 
