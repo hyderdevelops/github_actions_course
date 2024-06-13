@@ -1,0 +1,40 @@
+name: My Custom Action
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+
+      - name: Install Deps
+        run: npm i
+
+      - name: Test Code
+        run: npm run test
+
+      - name: Install Zip
+        run: sudo apt install zip -y
+
+      - name: Zip the Coverage Folder
+        run: zip -r coverage.zip coverage
+
+      - name: Upload Coverage Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Coverage
+          path: coverage.zip
+
+      - name: Run Custom Action
+        id: custom_action
+        uses: hyderdevelops//custom_actions/hello_world
+        with:
+          name-to-greet: Tasleema Jan
+
+      - name: Output from Custom Action
+        run: echo ${{steps.custom_action.outputs.greet-string}}
